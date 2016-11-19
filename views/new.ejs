@@ -14,25 +14,27 @@
           Blog DB
         </div>
         <div id="new-post">
-          <a href='/new'><button id="new-post-btn">New Post</button></a>
+          <button id="new-post-btn">New Post</button>
         </div>
       </div>
     </header>
     <div class="container">
       <div class="row">
         <div class="col-md-offset-2 col-md-7">
-          <% data.forEach(function(user){ %>
-            <div class="post-box">
-              <div class="post-title-box">
-                <h2 id="post-title"><%= user.title %></h2>
-                <span style="font-weight: bold;"><%= user.date %></span>
-              </div>
-              <div id="post-text">
-                <%= user.post %>
-              </div>
-              <a href="edit.ejs">Edit</a>
+          <div class="post-box">
+            <div>
+              <h2 style="font-family: 'Gloria Hallelujah', cursive; margin-bottom: 25px;">New Blog Post</h2>
             </div>
-          <% }) %>
+            <form action='/new' method="post">
+                Title: <input type="text" name="blogTitle" placeholder="Blog Post Title">
+                Date: <input type="text" name="postDate" placeholder="Blog Post Date">
+              <div id="post-text">
+                Post:
+                <textarea rows="25" cols="75" name="blogPost" placeholder="Write blog post here."></textarea>
+              </div>
+              <input id="save-btn" type="submit" value="Save">
+            </form>
+          </div>
         </div>
       </div>
     </div>
