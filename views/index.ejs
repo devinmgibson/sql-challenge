@@ -30,7 +30,8 @@
               <div id="post-text">
                 <%= user.post %>
               </div>
-              <a href="edit.ejs">Edit</a>
+              <a href='/users/<%= user.id %>/edit'>Edit</a> |
+              <a href='/users/<%= user.id %>'>Delete</a>
             </div>
           <% }) %>
         </div>

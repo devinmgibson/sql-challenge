@@ -18,6 +18,13 @@ app.use(bodyParser.json());
 
 //set public folder
 app.use(express.static(__dirname + '/public'));
+app.use( function( req, res, next ) {
+  if (req.query._method == 'DELETE') {
+    req.method = 'DELETE';
+    req.url = req.path;
+  }
+  next();
+});
 
 //render the home page
 app.get('/', function(req, res, next){
@@ -43,7 +50,7 @@ app.get('/new', function(req, res, next){
 
 //send new post to database and redirect to homepage
 app.post('/new', function(req, res, next){
-  db.none('insert into blog(title, date, post)' +
+  db.none('INSERT into blog(title, date, post)' +
       'values(${blogTitle}, ${postDate}, ${blogPost})',
     req.body)
     .then(function () {
@@ -54,6 +61,35 @@ app.post('/new', function(req, res, next){
     });
 });
 
+//edit previously published blog post
+app.get('/users/:id/edit', function(req, res, next){
+  var id = parseInt(req.params.id);
+  db.one('SELECT * FROM blog WHERE id=$1', id)
+  .then(function(user){
+    return res.render('edit', {user: user});
+  })
+  .catch(function (err){
+    return next(err);
+  });
+});
+
+//when post is edited and saved update
+app.post('/users/:id/edit', function(req, res, next){
+  var id = parseInt(req.params.id);
+  db.none('UPDATE blog SET title=$1, date=$2, post=$3 WHERE id=$4',
+        [req.body.blogTitle, req.body.postDate, req.body.blogPost, id])
+    .then(function () {
+      res.redirect('/');
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+});
+
+//delete previously published blog post
+app.get('/users/:id', function(req, res, next){
+  console.out('deleted');
+});
 
 //listsen at port 3000 for pages, server
 app.listen(3000, function(){

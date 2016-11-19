@@ -2,9 +2,43 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Edit Blog Post</title>
+    <title>Blog DB - Edit Blog Post</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
   </head>
   <body>
-
+    <header>
+      <div class="container">
+        <div id="site-title">
+          Blog DB
+        </div>
+        <div id="new-post">
+          <button id="new-post-btn">New Post</button>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-7">
+          <div class="post-box">
+            <div>
+              <h2 style="font-family: 'Gloria Hallelujah', cursive; margin-bottom: 25px;">Edit Blog Post</h2>
+            </div>
+            <form action='/users/<%= user.id %>/edit' method="post">
+                Title: <input type="text" name="blogTitle" value="<%= user.title %>">
+                Date: <input type="text" name="postDate" value="<%= user.date %>">
+              <div id="post-text">
+                Post:
+                <textarea rows="25" cols="75" name="blogPost"><%= user.post %></textarea>
+              </div>
+              <input id="save-btn" type="submit" value="Save">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
   </body>
-</html>
+  </html>
