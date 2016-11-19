@@ -101,7 +101,7 @@ app.post('/users/:id/edit', function(req, res, next){
 //delete previously published blog post
 app.get('/users/:id', function(req, res, next){
   var id = parseInt(req.params.id);
-  db.result('DELETE FROM blog WHERE id = $1', id)
+  db.result('DELETE FROM blog WHERE id = $1;', id)
   .then(function (result) {
     res.redirect('/');
   })

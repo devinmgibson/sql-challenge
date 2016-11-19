@@ -9,7 +9,7 @@ header{
 }
 .post-box{
   background: white;
-  margin-top: 75px;
+  margin: 75px 0px;
   padding: 60px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 5px 30px -4px rgba(0,0,0,0.5);
@@ -43,13 +43,34 @@ header{
   background: #e00000;
   text-decoration: none;
 }
+#home{
+  height: 60px;
+  width: 100px;
+  margin: 7.5px 0px;
+  float: right;
+}
+#home-btn{
+  height: 30px;
+  width: 80px;
+  margin: 15px;
+  background: grey;
+  border-width: 0px;
+  border-radius: 2px;
+  font-weight: bold;
+  color: white;
+}
+#home-btn:hover{
+  background: #636363;
+  text-decoration: none;
+}
+
 #post-title{
   font-family: 'Gloria Hallelujah', cursive;
   font-weight: bold;
   padding-bottom: 20px;
 }
 #post-text{
-  margin-top: 25px;
+  margin: 25px 0px;
 }
 #save-btn{
   height: 30px;
