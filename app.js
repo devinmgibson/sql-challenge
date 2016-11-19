@@ -48,6 +48,18 @@ app.get('/new', function(req, res, next){
   })
 });
 
+//show just one blog on a page
+app.get('/show/:id', function( req, res, next){
+  var id = parseInt(req.params.id);
+  db.one('SELECT * FROM blog WHERE id=$1', id)
+  .then(function(user){
+    return res.render('show', {user: user});
+  })
+  .catch(function (err){
+    return next(err);
+  });
+});
+
 //send new post to database and redirect to homepage
 app.post('/new', function(req, res, next){
   db.none('INSERT into blog(title, date, post)' +
@@ -88,7 +100,14 @@ app.post('/users/:id/edit', function(req, res, next){
 
 //delete previously published blog post
 app.get('/users/:id', function(req, res, next){
-  console.out('deleted');
+  var id = parseInt(req.params.id);
+  db.result('DELETE FROM blog WHERE id = $1', id)
+  .then(function (result) {
+    res.redirect('/');
+  })
+  .catch(function (err) {
+    return next(err);
+  });
 });
 
 //listsen at port 3000 for pages, server

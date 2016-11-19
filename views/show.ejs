@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Blog DB - Single Blog Post</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
   </head>
   <body>
-
+    <header>
+      <div class="container">
+        <div id="site-title">
+          Blog DB
+        </div>
+        <div id="new-post">
+          <a href='/new'><button id="new-post-btn">New Post</button></a>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-7">
+            <div class="post-box">
+              <div class="post-title-box">
+                <h2 id="post-title"><%= user.title %></h2>
+                <span style="font-weight: bold;"><%= user.date %></span>
+              </div>
+              <div id="post-text">
+                <%= user.post %>
+              </div>
+              <a href='/users/<%= user.id %>/edit'>Edit</a> |
+              <a href='/users/<%= user.id %>'>Delete</a> |
+              <a href='/show/<%= user.id %>'>Show</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
   </body>
 </html>
